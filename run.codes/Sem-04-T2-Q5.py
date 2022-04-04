@@ -1,5 +1,4 @@
 def numeroAoContrario(number):
-    #5978
     a4 = number//1000
     a3 = (number//100) % 10
     a2 = (number//10) % 10
@@ -9,12 +8,3 @@ def numeroAoContrario(number):
 if __name__ == "__main__":
     number = int(input())
     print(numeroAoContrario(number))
-
-
-5978
-8795
-8000
-700
-90
-5
-    

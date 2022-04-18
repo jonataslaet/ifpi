@@ -11,12 +11,9 @@ def isLetter(c):
 def isConsonant(c):
     return (not (isVowel(c))) and isLetter(c)
 
-def showCaractere(c):
-    if isVowel(c): print("vogal")
-    elif isConsonant(c): print("consoante")
-    elif isDigit(c): print("número")
-    elif (not isLetter(c)) and (not isDigit(c)) : print("símbolo")
-
 if __name__ == "__main__":
     letra = input()
-    print(showCaractere(letra))
+    if isVowel(letra): print("vogal")
+    elif isConsonant(letra): print("consoante")
+    elif isDigit(letra): print("número")
+    elif (not isLetter(letra)) and (not isDigit(letra)) : print("símbolo")

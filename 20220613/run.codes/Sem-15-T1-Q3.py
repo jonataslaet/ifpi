@@ -24,18 +24,10 @@ e = -1
 
 # Declaracao de matriz (inicialmente só tem uma linha, mesma coisa de um vetor unidimensional)
 matrix = []
-# matrix = []
-# matrix.append([])
-# matrix.append([])
-# matrix[0].append(2)
-# matrix[1].append(3)
 
 # Captura valores 'n' e 'm'
 n = int(input().strip())
 m = int(input().strip())
-
-# Declara a matriz
-matrix = []
 
 # Percorre a matriz
 for i in range(n):

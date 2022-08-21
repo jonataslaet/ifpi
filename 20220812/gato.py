@@ -8,7 +8,7 @@ class Gato:
     peso = None
     idade = None
     sexo = None
-    filhos = []
+    filhos = None
     pai = None
     mae = None
 
@@ -21,6 +21,7 @@ class Gato:
         self.peso = peso
         self.idade = idade
         self.sexo = sexo
+        self.filhos = []
 
     def engordar(self, peso_ganho):
         self.peso = self.peso + peso_ganho
@@ -112,3 +113,6 @@ if __name__ == "__main__":
 
     # h) Bambino envelhece 1 ano
     bambino.envelhecer()
+
+    # i) Bambinao não tem filho de Bambina
+    bambinao.tem_filho_de(bambina)

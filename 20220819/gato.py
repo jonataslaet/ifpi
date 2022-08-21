@@ -1,3 +1,9 @@
+from random import randint
+from typing import Final
+
+sexos_possiveis: Final[str] = ['M', 'F']
+
+
 class Gato:
 
     nome = None
@@ -43,37 +49,36 @@ class Gato:
     def sexos_opostos(self, outro_gato):
         return self.sexo != outro_gato.sexo
 
-    def femea_no_cio(self, outro_gato):
-        if (self.sexo == 'F' and self.cio):
-            return self
-        elif (outro_gato.sexo == 'F' and outro_gato.cio):
-            return outro_gato
-        return None
+    def retornar_gato_e_gata(self, outro_gato):
+        if (self.sexo == 'M'):
+            return self, outro_gato
+        return outro_gato, self
 
     def parir(self):
         if (self.sexo == 'F' and self.prenhe == True):
+            pai = self.filhos[-1].pai
             self.prenhe = False
             self.puerperio = True
-            print(self.nome + ' pariu um filho cujo pai é o ' +
-                  self.filhos[-1].pai.nome + '. Ela está agora em estado puerperal.')
+            print(self.nome + ' pariu os seguintes filhos com o ' + pai.nome + ':')
+            f = 1
+            for filho in self.filhos:
+                if (filho.pai == pai):
+                    print('Filho ' + str(f) + ' com o ' +
+                          pai.nome + ': ' + filho.nome)
+                    f += 1
         else:
-            print(self.nome + ' não pode parir')
+            print(self.nome + ' não pode parir.')
 
     def cruzar(self, outro_gato):
-        femeaNoCio = self.femea_no_cio(outro_gato)
+        gato_macho, gata_femea = self.retornar_gato_e_gata(outro_gato)
         if (not self.sexos_opostos(outro_gato)):
             print('O sexo dos gatos devem ser opostos para o cruzamento.')
-        elif (femeaNoCio == None):
+        elif (gata_femea.cio == False):
             print('A fêmea deve estar no cio.')
         else:
-            femeaNoCio.prenhe = True
-            filho = Gato("Filho de "+self.nome+" e "+outro_gato.nome,
-                         False, False, False, False, 0.1, 0, 'M')
-            filho.mae = femeaNoCio
-            filho.pai = self if self.sexo == 'M' else outro_gato
-            self.filhos.append(filho)
-            outro_gato.filhos.append(filho)
-            print(self.nome + ' e ' + outro_gato.nome + ' cruzaram')
+            gata_femea.prenhe = True
+            gata_femea.geraFilhos(gato_macho)
+            print(self.nome + ' e ' + gato_macho.nome + ' cruzaram.')
 
     def tem_filho_de(self, outro_gato):
         for filho in self.filhos:
@@ -83,6 +88,33 @@ class Gato:
                 return True
         print('Eu, ' + self.nome + ', não tenho filho de ' + outro_gato.nome + '.')
         return False
+
+    def quantidadeFilhosGerada(self):
+        if (self.sexo.upper() == 'M'):
+            return 0
+        maxFilhos = randint(0, 10)
+        quantidadeGerada = randint(0, maxFilhos)
+        return quantidadeGerada
+
+    def meusFilhosComDeterminadoGato(self, gato_pai):
+        filhos = []
+        print('Eu, ' + self.nome +
+              ', tenho os seguintes filhos com o ' + gato_pai.nome + ': ')
+        for filho in self.filhos:
+            if (filho.pai == gato_pai):
+                filhos.append(filho)
+        return filhos
+
+    def geraFilhos(self, gato_pai):
+        q = self.quantidadeFilhosGerada()
+        if (self.sexo.upper() == 'F' and self.prenhe == True):
+            for i in range(0, q+1):
+                filhoGerado = Gato("Filho de " + str(
+                    self.nome) + " e " + str(gato_pai.nome), False, False, False, False, 2.0, 0, sexos_possiveis[randint(0, 1)])
+                filhoGerado.pai = gato_pai
+                filhoGerado.mae = self
+                self.filhos.append(filhoGerado)
+                gato_pai.filhos.append(filhoGerado)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primeira Página</title>
+</head>
+<body>
+    <script>
+    document.write("hello World")
+    document.write("<h2 id='cabecalho'>"+document.title+"</h2>")
+    </script>
+    <button onclick="alert('Bem vindo')">
+        Clique em Mim
+    </button>
+    <p id="paragrafo">Olá!</p>
+<script>
+    function mFuncao() {
+    var x = document.getElementById("paragrafo");
+    var y = document.getElementById("cabecalho");
+    y.innerHTML="Wellcome!"
+    x.innerHTML="Hello!";
+}
+</script>
+<button onclick="mFuncao();"> Translate</button>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Informe o salário atual: </p><input type="text" id="salario-original"><br>
+    <button onclick="Ajustar()">Ajustar</button>
+    <p id="info-resultado"></p>
+    <script>
+        function Ajustar()
+        {
+        var salarioOriginal = parseInt(document.getElementById("salario-original").value);
+        var percentualAumento = 20.0;
+        if (salarioOriginal > 281.00 && salarioOriginal <= 700.00) {
+            percentualAumento = 15.0;
+        } else if (salarioOriginal > 700.00 && salarioOriginal <= 1500.00) {
+            percentualAumento = 10.0;
+        } else if (salarioOriginal > 1500.00) {
+            percentualAumento = 5.0;
+        }
+
+        document.getElementById("info-resultado").innerHTML = 
+            "Salário antes do reajuste: R$ "+ (salarioOriginal) +
+            " | Percental de aumento aplicado: "+ (percentualAumento) + "%" + 
+            " | Valor do aumento: R$ "+ (salarioOriginal * (percentualAumento/100.0)) + 
+            " | Novo salário, após o aumento: R$ "+ (salarioOriginal * ( 1 + (percentualAumento/100.0)));
+        }
+    </script>
+</body>
+</html>

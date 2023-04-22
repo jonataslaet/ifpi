@@ -30,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
       Database db = await (openDatabase(path, version: 1,
           onCreate: (db, versaoRecente) async {
         String sql =
-            "CREATE TABLE contatos (id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR)";
+            "CREATE TABLE contatos (id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR, email VARCHAR)";
         await db.execute(sql);
       }));
       print('Banco:  ${db.isOpen.toString()}');
@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _salvar() async {
     Database db = await _openBanco();
-    Map<String, dynamic> dadosContato = {'nome': 'Jonatas Laet'};
+    Map<String, dynamic> dadosContato = {'nome': 'Jonatas Laet', 'email': 'Jonatas Laet'};
     int idContato = await db.insert('contatos', dadosContato);
     print('Id: $idContato');
   }

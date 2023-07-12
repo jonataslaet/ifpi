@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function trocaImagem() {
+        var elemento=document.getElementById("lampada");
+            if(elemento.src.match("lampada_ligada.jpg")) {
+                elemento.src="lampada_apagada.jpg";
+            } else {
+                elemento.src="lampada_ligada.jpg";
+            }
+        }
+        </script>
+        <p>
+        <img id="lampada" onclick="trocaImagem()"
+        src="lampada_apagada.jpg" width=100 height=180></p>
+        <p>Clique na lâmpada para ligar/desligar a luz</p>
+</body>
+</html>
